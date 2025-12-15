@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชื่อของคุณ | Minimalist Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* ================================================= */
+        /* === 🌑 CSS STYLING: Dark Mode & Minimalist === */
+        /* ================================================= */
+        :root {
+            /* Dark Mode Palette */
+            --primary-color: #00ADB5; /* Teal/Cyan - สีเน้นหลัก */
+            --secondary-color: #EEEEEE; /* สีข้อความอ่อน */
+            --background-dark: #222831; /* พื้นหลังเข้มหลัก */
+            --card-background: #393E46; /* พื้นหลังการ์ด/รอง */
+            --text-color-light: #EEEEEE;
+            --text-color-muted: #A9A9A9;
+            --header-height: 80px;
+            --font-main: 'Poppins', 'Kanit', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-color-light);
+            background-color: var(--background-dark);
+            scroll-behavior: smooth;
+        }
+
+        /* --- Global Elements --- */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 80px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+        
+        .section-title span {
+            color: var(--text-color-light);
+        }
+
+        /* --- Header / Navigation (Fixed & Minimal) --- */
+        .header {
+            background-color: rgba(34, 40, 49, 0.95); /* Darker, slightly transparent */
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            border-bottom: 1px solid var(--card-background);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: var(--header-height);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links a {
+            color: var(--text-color-light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            margin: 0 5px;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--background-dark);
+            background-color: var(--primary-color);
+        }
+        
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        /* --- Hero Section (Emphasis on Typography) --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: var(--header-height);
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 0 0 10px rgba(0, 173, 181, 0.3);
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--text-color-muted);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 173, 181, 0.6);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--primary-color);
+            color: var(--background-dark);
+            text-decoration: none;
+            border-radius: 50px; /* Pill shape */
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #008D93;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 173, 181, 0.4);
+        }
+        
+        /* --- About Section (Simple Layout) --- */
+        #about p {
+            font-size: 1.2rem;
+            color: var(--text-color-light);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* --- Skills Section (Icon-based Cards) --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid var(--primary-color);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            background-color: #3f444e;
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        /* --- Project Section (Slightly more complex cards) --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s, opacity 0.4s;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            opacity: 0.8;
+            transition: opacity 0.4s;
+        }
+        
+        .project-card:hover img {
+            opacity: 1;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .project-tags {
+            margin-top: 15px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--background-dark);
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .project-link {
+            display: block;
+            margin-top: 15px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .social-links a {
+            color: var(--text-color-light);
+            font-size: 2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--card-background);
+            font-size: 0.9rem;
+            color: var(--text-color-muted);
+        }
+
+
+        /* ================================================= */
+        /* === 📱 RESPONSIVE DESIGN (Media Queries) === */
+        /* ================================================= */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            
+            /* Mobile Navbar */
+            .nav-links {
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--background-dark);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+                padding: 10px 0;
+                border-top: 1px solid var(--card-background);
+            }
+
+            .nav-links.active {
+                display: flex; 
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                border-bottom: 1px solid var(--card-background);
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .menu-toggle {
+                display: block; 
+            }
+            
+            /* Mobile Hero */
+            #hero {
+                padding: 120px 20px 80px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .hero-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr; /* Single column on small screens */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="#hero" class="logo">K.M.</a> <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#skills">SKILLS</a></li>
+                <li><a href="#projects">WORK</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div> 
+        </nav>
+    </header>
+
+    <section id="hero">
+        <img src="https://via.placeholder.com/180/00ADB5/222831?text=Me" alt="Profile Picture" class="hero-image">
+        <div class="hero-content">
+            <p>สวัสดีครับ! ผมคือ...</p>
+            <h1>
+                [ชื่อของคุณ]
+                <br>
+                <span>Full-Stack Developer</span>
+            </h1>
+            <p>
+                เปลี่ยนแนวคิดให้กลายเป็นโซลูชันดิจิทัลที่น่าประทับใจ ด้วยความหลงใหลในเทคโนโลยีที่ทันสมัยและการออกแบบที่เน้นผู้ใช้เป็นศูนย์กลาง
+            </p>
+            <a href="#projects" class="cta-button">EXPLORE MY WORK</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title"><span>01.</span> ABOUT ME</h2>
+        <p>
+            ผมคือ [ชื่อ] เป็นนักพัฒนาซอฟต์แวร์ที่มุ่งเน้นการสร้างผลิตภัณฑ์ที่ใช้งานได้จริงและมีประสิทธิภาพ ผมมีประสบการณ์ [X] ปีในการทำงานร่วมกับทีม 
+            และมักจะเรียนรู้เทคโนโลยีใหม่ๆ อยู่เสมอ โดยเฉพาะในด้านการปรับปรุงประสิทธิภาพของแอปพลิเคชันและการจัดการฐานข้อมูล
+            <br><br>
+            ความเชื่อของผมคือโค้ดที่ดีต้องง่ายต่อการบำรุงรักษา และการออกแบบที่เรียบง่ายคือสิ่งที่นำมาซึ่งประสบการณ์ผู้ใช้ที่ดีที่สุด
+        </p>
+    </section>
+    
+    <section id="skills" style="background-color: var(--card-background);">
+        <h2 class="section-title"><span>02.</span> SKILLS & EXPERTISE</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fas fa-desktop"></i>
+                <h3>Frontend Development</h3>
+                <p>HTML5, CSS3 (Sass, Tailwind), JavaScript, React, Vue.js. เน้น Responsive Design.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-server"></i>
+                <h3>Backend & API</h3>
+                <p>Node.js, Python/Flask, Go. การออกแบบและสร้าง RESTful APIs ที่มีประสิทธิภาพ.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-database"></i>
+                <h3>Database Management</h3>
+                <p>MongoDB (NoSQL), PostgreSQL (SQL). การจัดการฐานข้อมูลขนาดใหญ่และปลอดภัย.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-tools"></i>
+                <h3>DevOps & Tools</h3>
+                <p>Git/GitHub, Docker, CI/CD, AWS/Google Cloud. การทำงานแบบ Agile.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title"><span>03.</span> FEATURED PROJECTS</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x250/00ADB5/393E46?text=Project+E-commerce" alt="Project 1 Thumbnail">
+                <div class="project-info">
+                    <h3>Modern E-Commerce Platform</h3>
+                    <p>ระบบร้านค้าออนไลน์ที่ออกแบบมาเพื่อความเร็วและความง่ายในการใช้งาน มีระบบจัดการสินค้าและตะกร้าสินค้าแบบเรียลไทม์</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                    <a href="#" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x250/00ADB5/393E46?text=Project+Analytics" alt="Project 2 Thumbnail">
+                <div class="project-info">
+                    <h3>Real-time Data Analytics Dashboard</h3>
+                    <p>แดชบอร์ดสำหรับแสดงผลข้อมูลขนาดใหญ่แบบเรียลไทม์ ใช้ Chart.js สำหรับการแสดงผลที่สวยงามและโต้ตอบได้</p>
+                    <div class="project-tags">
+                        <span class="tag">Vue.js</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                    <a href="#" class="project-link" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background-color: var(--card-background);">
+        <h2 class="section-title"><span>04.</span> GET IN TOUCH</h2>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px;">
+            สนใจร่วมงาน หรือต้องการพูดคุยเกี่ยวกับโปรเจกต์ใหม่ๆ? ส่งอีเมลถึงผมได้เลย! ผมพร้อมรับฟังโอกาสใหม่ๆ เสมอ
+        </p>
+        
+        <a href="mailto:your.email@example.com" class="cta-button" style="margin-bottom: 50px;">
+            Say Hello! (your.email@example.com)
+        </a>
+        
+        <div class="social-links">
+            <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        &copy; 2025 Designed & Developed by [ชื่อของคุณ]. All rights reserved.
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const header = document.querySelector('.header');
+
+            // 1. Toggle mobile menu
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // 2. Close mobile menu when a link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // 3. Smooth scrolling with header offset
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                         // Calculate offset to account for sticky header height
+                         const headerHeight = header.offsetHeight; 
+                         window.scrollTo({
+                            top: targetElement.offsetTop - headerHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

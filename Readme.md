@@ -1,3 +1,3 @@
 ### My portfolio 
-- make by Weerawit thongmuangloung
+- ### Weerawit thongmuangloung
 - at 15-12-2025
